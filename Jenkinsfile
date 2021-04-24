@@ -12,6 +12,8 @@ pipeline {
                 }
                 echo "Directory after changed"
                 sh "pwd"
+
+                sh "ng -v"
                 
             }
         }
