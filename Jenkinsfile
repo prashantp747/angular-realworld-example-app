@@ -31,7 +31,7 @@ pipeline {
                 followSymlinks: false,
                 onlyIfSuccessful: true
                 echo 'This is test stage..',
-                zip zipFile: 'app.zip', archive: false, dir: 'app'
+                
                 
             }
         }
