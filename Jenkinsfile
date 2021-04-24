@@ -24,15 +24,7 @@ pipeline {
             }
         }
 
-         stage("create artifact") {
-            steps {
-                archiveArtifacts artifacts: 'blankfile.txt',
-                excludes: 'notToIncludeFile.txt', 
-                followSymlinks: false,
-                onlyIfSuccessful: true
-                echo 'This is test stage..'                
-                
-            }
+        
         }
          stage("deploy") {
             steps {
