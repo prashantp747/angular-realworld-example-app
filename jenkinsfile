@@ -1,0 +1,46 @@
+pipeline {
+
+    agent any
+    stages {
+        stage("build") {
+            steps {
+
+                echo "This is build stage.."
+                sh "pwd"
+                dir("${env.WORKSPACE}/app"){
+                    sh "pwd"
+                }
+                echo "Directory after changed"
+                sh "pwd"
+                
+            }
+        }
+
+         stage("test") {
+            steps {
+
+                echo 'This is test stage..'
+                
+            }
+        }
+
+         stage("create artifact") {
+            steps {
+                archiveArtifacts artifacts: 'blankfile.txt',
+                excludes: 'notToIncludeFile.txt', 
+                followSymlinks: false,
+                onlyIfSuccessful: true
+                echo 'This is test stage..',
+                zip zipFile: 'app.zip', archive: false, dir: 'app'
+                
+            }
+        }
+         stage("deploy") {
+            steps {
+
+                echo 'This is deploy stage..'
+                
+            }
+        }
+    }
+}
