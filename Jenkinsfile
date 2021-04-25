@@ -14,7 +14,7 @@ pipeline {
                 sh "pwd"
 
                 /* #sh "ng -v" */
-                sh "npm run-script lint"
+                sh 'npm run-script build'
                 
             }
         }
