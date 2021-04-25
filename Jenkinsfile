@@ -14,6 +14,8 @@ pipeline {
                 sh "pwd"
 
                 /* #sh "ng -v" */
+                sh 'npm install'
+                sh 'echo *************************'
                 sh 'npm run-script build'
                 
             }
