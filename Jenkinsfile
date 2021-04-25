@@ -30,10 +30,12 @@ pipeline {
 
                 /* #sh "ng -v" */
                 sh 'npm install'
-                sh 'echo *************************'
+                echo '*************************'
                 sh 'node --version'
                 sh 'npm -v'
                 sh 'npm run-script lint'
+                echo '----------------------- xxxxxxxxxxxxx -----------------------'
+
                 
             }
         }
@@ -42,7 +44,12 @@ pipeline {
             steps {
 
                 echo 'This is test stage..'
-                sh 'npm run-script test'
+                /* sh 'npm run-script test' */
+                echo 'This test stage needs to be configured'
+                echo 'Done with Test Stage'
+                echo '----------------------- xxxxxxxxxxxxx -----------------------'
+
+
             }
         }
         
