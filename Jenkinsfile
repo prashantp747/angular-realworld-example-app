@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent {
+        docker { image 'node:12.22.1' }
+    }
     stages {
         stage("build") {
             steps {
@@ -16,7 +18,8 @@ pipeline {
                 /* #sh "ng -v" */
                 sh 'npm install'
                 sh 'echo *************************'
-                sh 'npm run-script build'
+                sh 'node --version'
+                sh 'npm -v'
                 
             }
         }
