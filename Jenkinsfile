@@ -33,6 +33,7 @@ pipeline {
                 sh 'echo *************************'
                 sh 'node --version'
                 sh 'npm -v'
+                sh 'npm run-script lint'
                 
             }
         }
@@ -41,7 +42,7 @@ pipeline {
             steps {
 
                 echo 'This is test stage..'
-                
+                sh 'npm run-script test'
             }
         }
         
