@@ -1,38 +1,56 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:lts-buster-slim'
-      args '-p 8989:8989'
+
+    agent any
+
+    /* agent {
+        docker { 
+            image 'node:12.22.1'
+            args '-p 8989:8989' 
+
+             }
+    } */
+
+    tools { 
+    
+        nodejs 'demoAngular'
+
+       }
+
+    stages {
+        stage("build") {
+            steps {
+
+                echo "This is build stage.."
+                sh "pwd"
+                dir("${env.WORKSPACE}/app"){
+                    sh "pwd"
+                }
+                echo "Directory after changed"
+                sh "pwd"
+
+                /* #sh "ng -v" */
+                sh 'npm install'
+                sh 'echo *************************'
+                sh 'node --version'
+                sh 'npm -v'
+                
+            }
+        }
+
+         stage("test") {
+            steps {
+
+                echo 'This is test stage..'
+                
+            }
+        }
+        
+         stage("deploy") {
+            steps {
+
+                echo 'This is deploy stage..'
+                
+            }
+        }
     }
-  }
-  environment {
-    NODE_ENV = 'production'
-  }
-  stages {
-    stage('Install') {
-      steps {
-        echo 'Installing..'
-        sh 'yarn'
-        echo 'Install Success'
-      }
-    }
-    stage('Build') {
-      steps {
-        echo 'Building..'
-        sh 'yarn build'
-        echo 'Build Success'
-      }
-    }
-    stage('Deploy') {
-      when {
-        branch 'master'
-      }
-      steps {
-        echo 'Deploying..'
-        input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        sh './jenkins/deploy.sh'
-        echo 'Deploy Success'
-      }
-    }
-  }
 }
