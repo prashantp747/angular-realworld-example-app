@@ -13,7 +13,7 @@ pipeline {
                 echo "Directory after changed"
                 sh "pwd"
 
-                #sh "ng -v"
+                /* #sh "ng -v" */
                 sh "npm run-script lint"
                 
             }
