@@ -13,14 +13,7 @@ pipeline {
                     sh "pwd"
                 }
                 echo "Directory after changed"
-                sh "pwd"
-
-                /* #sh "ng -v" */
-                sh 'npm install'
-                sh 'echo *************************'
-                sh 'node --version'
-                sh 'npm -v'
-                
+                sh "pwd"                
             }
         }
 
