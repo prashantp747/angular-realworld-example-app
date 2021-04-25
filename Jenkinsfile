@@ -1,36 +1,28 @@
 pipeline {
-
     agent {
-        docker { image 'node:12.22.1' }
+        docker { image 'node:10-alpine' }
     }
     stages {
-        stage("build") {
+        stage('Restore') {
             steps {
-
-                echo "This is build stage.."
-                sh "pwd"
-                dir("${env.WORKSPACE}/app"){
-                    sh "pwd"
-                }
-                echo "Directory after changed"
-                sh "pwd"                
+                sh 'npm install'
             }
         }
-
-         stage("test") {
+        stage('Build') {
             steps {
-
-                echo 'This is test stage..'
-                
+                sh 'npm run-script build'
             }
         }
-        
-         stage("deploy") {
+        stage('Test') {
             steps {
-
-                echo 'This is deploy stage..'
-                
+                sh 'ng run-script test'
             }
-        }
+        }        
+        stage('Deploy') {
+            steps {
+                sh 'rm ../../apps/*'
+                sh 'cp ./dist/apps/* ../../apps/'
+            }
+        }             
     }
 }
