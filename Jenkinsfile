@@ -9,6 +9,9 @@ pipeline {
 
              }
     } 
+    environment {
+        HOME = '.'
+    }
 
     /*tools { 
     
