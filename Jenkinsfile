@@ -49,6 +49,7 @@ pipeline {
                 echo 'This is test stage..'
                 /* sh 'npm run-script test' */
                 echo 'This test stage needs to be configured'
+                sh 'nom run-script test'
                 echo 'Done with Test Stage'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
