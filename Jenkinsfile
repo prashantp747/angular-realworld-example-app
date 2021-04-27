@@ -1,20 +1,20 @@
 pipeline {
 
-    agent any
+    /* agent any */
 
-    /* agent {
+     agent {
         docker { 
             image 'node:12.22.1'
             args '-p 8989:8989' 
 
              }
-    } */
+    } 
 
-    tools { 
+    /*tools { 
     
         nodejs 'demoAngular'
 
-       }
+       } */
 
     stages {
         stage("build") {
