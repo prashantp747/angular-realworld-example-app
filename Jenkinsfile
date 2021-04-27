@@ -16,7 +16,6 @@ pipeline {
     /*tools { 
     
         nodejs 'demoAngular'
-
        } */
 
     stages {
@@ -44,6 +43,10 @@ pipeline {
         }
 
          stage("test") {
+            
+            agent{
+                label 'master'
+            }
             steps {
 
                 echo 'This is test stage..'
