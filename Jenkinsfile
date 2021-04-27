@@ -47,6 +47,10 @@ pipeline {
             agent{
                 label 'master'
             }
+            environment {
+           HOME = '.'
+             }
+
             steps {
 
                 echo 'This is test stage..'
