@@ -65,9 +65,11 @@ pipeline {
 
 
             }
-        } */
+            } */
         
         stage("test") {
+            steps{
+
                 echo '*************************'
                 echo 'This is test stage..'
                 echo '*************************'
@@ -76,8 +78,13 @@ pipeline {
                 sh 'protractor protractor.conf.js'        
                 echo 'Done with Test Stage'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
+
+
+
             }
-        }
+                
+            }
+        
 
         stage("deploy") {
             steps {
