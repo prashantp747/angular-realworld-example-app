@@ -19,10 +19,11 @@ pipeline {
        } */
 
     stages {
-        stage("build") {
+        stage("build and serve application") {
             steps {
-
-                echo "This is build stage.."
+                echo '*************************'
+                echo "This is build and serve stage.."
+                echo '*************************'
                 sh "pwd"
                 dir("${env.WORKSPACE}/app"){
                     sh "pwd"
@@ -32,17 +33,18 @@ pipeline {
 
                 /* #sh "ng -v" */
                 sh 'npm install'
-                echo '*************************'
                 sh 'node --version'
                 sh 'npm -v'
                 sh 'npm run-script lint'
+                sh 'npm run-script build'
+                sh 'npm run-script start'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
                 
             }
         }
 
-         stage("test") {
+        /* stage("test") {
             
             agent{
                 label 'master'
@@ -54,7 +56,7 @@ pipeline {
             steps {
 
                 echo 'This is test stage..'
-                /* sh 'npm run-script test' */
+                sh 'npm run-script test'
                 echo 'This test stage needs to be configured'
                 sh 'npm install'
                 sh 'npm run-script test'
@@ -63,9 +65,21 @@ pipeline {
 
 
             }
-        }
+        } */
         
-         stage("deploy") {
+        stage("test") {
+                echo '*************************'
+                echo 'This is test stage..'
+                echo '*************************'
+                /* sh 'npm run-script test' */
+                sh 'docker-compose up -d --build'
+                sh 'protractor protractor.conf.js'        
+                echo 'Done with Test Stage'
+                echo '----------------------- xxxxxxxxxxxxx -----------------------'
+            }
+        }
+
+        stage("deploy") {
             steps {
 
                 echo 'This is deploy stage..'
