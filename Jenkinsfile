@@ -1,7 +1,7 @@
 pipeline {
 
-    /* agent any */
-
+    agent any 
+     /* 
      agent {
         docker { 
             image 'node:12.22.1'
@@ -9,6 +9,7 @@ pipeline {
 
              }
     } 
+    */
     environment {
         HOME = '.'
     }
