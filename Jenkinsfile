@@ -1,14 +1,14 @@
 pipeline {
 
-    /* agent any */
+    agent any
 
-     agent {
+    /* agent {
         docker { 
             image 'node:12.22.1'
             args '-p 8989:8989' 
 
              }
-    } 
+    } */
     environment {
         HOME = '.'
     }
@@ -49,6 +49,7 @@ pipeline {
             steps {
                 echo '*************************'
                 echo "This is build and serve stage.."
+                echo '*************************'
                 sh 'docker-compose up --build'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
@@ -87,7 +88,8 @@ pipeline {
                 echo '*************************'
                 /* sh 'npm run-script test' */
                 sh 'docker exec -it testapp bash'
-                sh 'protractor protractor.conf.js'        
+                sh 'protractor protractor.conf.js'
+                sh 'exit'        
                 echo 'Done with Test Stage'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
@@ -100,7 +102,7 @@ pipeline {
 
         stage("deploy") {
             steps {
-                
+
                 echo 'This is deploy stage..'
                 
             }
