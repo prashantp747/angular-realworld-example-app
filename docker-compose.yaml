@@ -69,8 +69,10 @@ services:
     image: prashanttestapp
     ports:               
       - "4200:4200"
-    command: bash -c "npm start && protractor protractor.conf.js"
-
+    #command: bash -c "npm start && protractor protractor.conf.js"
+    stdin_open: true
+    #command: npm run-script e2e
+    #command: npm run-script build
     depends_on:             
       - chrome
       - selenium-hub
