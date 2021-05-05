@@ -73,8 +73,7 @@ services:
     ports:               
       - "4200:4200"
     #command: bash -c "npm start && protractor protractor.conf.js"
-    stdin_open: true
-    #command: npm run-script e2e
+    command: pm2 start 'npm start'
     #command: npm run-script build
     depends_on:             
       - chrome
