@@ -69,11 +69,11 @@ services:
      context: .
      dockerfile: DockerfilePre
     image: pm2app-image
+    command: pm2 start 'npm start'
     stdin_open: true
     ports:               
       - "4200:4200"
     #command: bash -c "npm start && protractor protractor.conf.js"
-    command: pm2 start 'npm start'
     #command: npm run-script build
     depends_on:             
       - chrome
