@@ -16,8 +16,8 @@ RUN npm -v
 RUN npm run-script build
 
 EXPOSE 4200 4444
-#CMD npm run build
-CMD [ "pm2-runtime", "npm", "--", "start" ]
+RUN pm2 start 'npm start'
+#CMD [ "pm2-runtime", "npm", "--", "start" ]
 
 # This tells which user will execute commands
 #USER root
