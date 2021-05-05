@@ -95,8 +95,7 @@ pipeline {
 
             }
                 
-            }
-        
+            }        
 
         stage("deploy") {
             steps {

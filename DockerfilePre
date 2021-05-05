@@ -8,21 +8,16 @@ COPY package-lock.json /node/app
 RUN npm install
 RUN npm install -g protractor
 RUN npm install -g @angular/cli
+RUN npm install pm2 -g
 COPY . /node/app
 RUN npm -v
 #RUN npm run-script lint
+#RUN pm2 start npm --name "app name" -- start
 RUN npm run-script build
+
 EXPOSE 4200 4444
 #CMD npm run build
-#CMD ["npm","start"]
-
-# Stage 2
-FROM nginx:1.19
-COPY --from=build-step /node/app/dist /usr/share/nginx/html
-#EXPOSE 8080:80
-#EXPOSE 9080
-CMD ["nginx", "-g", "daemon off;"]
-
+CMD [ "pm2-runtime", "npm", "--", "start" ]
 
 # This tells which user will execute commands
 #USER root
