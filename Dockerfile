@@ -17,7 +17,7 @@ RUN npm -v
 #RUN npm run-script build
 
 EXPOSE 4200 4444
-RUN protractor protractor.conf.js
+#RUN protractor protractor.conf.js
 #RUN pm2 start "ng serve --host 0.0.0.0 --port 8082" --name "My Angular App"
 #CMD [ "pm2-runtime", "npm", "--", "start" ]
 # This tells which user will execute commands
