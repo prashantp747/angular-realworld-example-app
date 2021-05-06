@@ -1,8 +1,6 @@
 # Stage 1
 FROM node:12.22.1 as build-step
 
-# Stage 1
-FROM node:12.22.1 as build-step
 
 RUN mkdir -p /node/app
 WORKDIR /node/app
@@ -16,11 +14,11 @@ COPY . /node/app
 RUN npm -v
 #RUN npm run-script lint
 #RUN pm2 start npm --name "app name" -- start
-RUN npm run-script build
+#RUN npm run-script build
 
 EXPOSE 4200 4444
 #RUN pm2 start "ng serve --host 0.0.0.0 --port 8082" --name "My Angular App"
-CMD [ "pm2-runtime", "npm", "--", "start" ]
+#CMD [ "pm2-runtime", "npm", "--", "start" ]
 # This tells which user will execute commands
 #USER root
 

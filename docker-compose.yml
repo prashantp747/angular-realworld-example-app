@@ -63,13 +63,13 @@ services:
       - "4443:4443"
       - "4444:4444"
   
-  testapp1:
-    container_name: testapp1
+  angular-app:
+    container_name: angular-app
     build:
      context: .
-     dockerfile: DockerfilePre
+     dockerfile: Dockerfile
     image: pm2app-image
-    #command: pm2 start 'npm start'
+    #command: "pm2 start npm --name 'test app' -- start"
     stdin_open: true
     ports:               
       - "4200:4200"
