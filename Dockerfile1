@@ -15,7 +15,9 @@ RUN npm run-script build
 EXPOSE 4200 4444
 #CMD npm run build
 #CMD ["npm","start"]
-
+EXPOSE 4200 4444
+#CMD npm run build
+CMD [ "pm2-runtime", "npm", "--", "start" ]
 # Stage 2
 FROM nginx:1.19
 COPY --from=build-step /node/app/dist /usr/share/nginx/html
@@ -42,3 +44,29 @@ CMD ["nginx", "-g", "daemon off;"]
 
 #RUN chown remote_user:remote_user   -R /home/remote_user && \
 #    chmod 400 /home/remote_user/.ssh/authorized_keys
+
+
+
+
+
+# Stage 1
+FROM node:12.22.1 as build-step
+
+RUN mkdir -p /node/app
+WORKDIR /node/app
+COPY package.json /node/app
+COPY package-lock.json /node/app
+RUN npm install
+RUN npm install -g protractor
+RUN npm install -g @angular/cli
+RUN npm install pm2 -g
+COPY . /node/app
+RUN npm -v
+#RUN npm run-script lint
+#RUN pm2 start npm --name "app name" -- start
+RUN npm run-script build
+
+EXPOSE 4200 4444
+#RUN pm2-runtime start npm 'app' -- start
+CMD [ "pm2-runtime", "npm", "--", "start" ]
+
