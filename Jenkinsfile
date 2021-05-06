@@ -50,7 +50,8 @@ pipeline {
                 echo '*************************'
                 echo "This is build and serve stage.."
                 echo '*************************'
-                sh 'docker-compose up --build'
+                /*sh 'docker-compose up --build'*/
+                sh 'docker-compose -f docker-compose-local-check.yml up'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
                 
