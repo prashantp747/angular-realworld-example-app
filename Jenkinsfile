@@ -51,6 +51,9 @@ pipeline {
                 echo "This is build and serve stage.."
                 echo '*************************'
                 sh 'docker-compose up --build -d'
+                sh 'docker exec angular-app pm2 start npm --name "my-app" -- start'
+                echo 'waitng for server up'
+                sleep time: 1, unit: 'MINUTES'
                 /*sh 'docker-compose -f docker-compose-local-check.yml up'*/
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
@@ -88,9 +91,9 @@ pipeline {
                 echo 'This is test stage..'
                 echo '*************************'
                 /* sh 'npm run-script test' */
-                sh 'docker exec -it angular-app bash'
-                sh 'protractor protractor.conf.js'
-                sh 'exit'        
+                //sh 'docker exec -it angular-app sh'
+                sh 'docker exec angular-app protractor protractor.conf.js'
+                //sh 'exit'        
                 echo 'Done with Test Stage'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
 
