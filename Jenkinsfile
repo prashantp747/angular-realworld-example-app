@@ -92,7 +92,9 @@ pipeline {
                 echo '*************************'
                 /* sh 'npm run-script test' */
                 //sh 'docker exec -it angular-app sh'
+                retry(3) {
                 sh 'docker exec angular-app protractor protractor.conf.js'
+}
                 //sh 'exit'        
                 echo 'Done with Test Stage'
                 echo '----------------------- xxxxxxxxxxxxx -----------------------'
