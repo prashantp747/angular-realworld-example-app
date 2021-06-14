@@ -18,8 +18,11 @@ steps:
 - script: |
     npm run-script lint
     npm run-script build
+  workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
+
   displayName: 'lint and build'
 
 - script: |
     npm run-script start
+  workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
   displayName: 'Host the application'
