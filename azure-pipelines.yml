@@ -1,0 +1,25 @@
+
+trigger:
+  - master
+
+pool:
+  name: test
+  agent: local1
+
+#variables:
+#/home/prashantp/Downloads/pipe/workingDir
+steps:
+- script: |
+    npm install
+    node --version
+  workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
+  displayName: 'npm install and build'
+
+- script: |
+    npm run-script lint
+    npm run-script build
+  displayName: 'lint and build'
+
+- script: |
+    npm run-script start
+  displayName: 'Host the application'
