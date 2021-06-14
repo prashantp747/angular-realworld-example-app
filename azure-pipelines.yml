@@ -1,23 +1,25 @@
-
 trigger:
-  - master
+- main
 
 pool:
-  name: test
-  agent: local1
+  vmImage: 'ubuntu-latest'
 
-#variables:
-#/home/prashantp/Downloads/pipe/workingDir
+variables:
+  projectName: 
+
 steps:
+
 - script: |
     npm install
-    node --version
-    npm run-script build
-  workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
+    npm run build
   displayName: 'npm install and build'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: 'build/**' # Pull the build directory (React)
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- script: |
-    npm run-script start
-  workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
-  displayName: 'Host the application'
+- task: PublishBuildArtifacts@1
+  inputs: 
+    PathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+    ArtifactName: 'www' # output artifact named www
