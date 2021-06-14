@@ -12,7 +12,6 @@ steps:
 - script: |
     npm install
     node --version
-    npm run-script lint
     npm run-script build
   workingDirectory: /home/prashantp/Downloads/pipe/workingDir/angularDemoProject
   displayName: 'npm install and build'
